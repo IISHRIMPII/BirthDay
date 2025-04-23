@@ -1,0 +1,350 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #f9c5d1, #a6c1ee);
+    color: #333;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    z-index: 1;
+}
+
+/* Background Animation */
+.stars, .twinkling {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center;
+    z-index: -2;
+}
+
+.twinkling {
+    background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center;
+    z-index: -1;
+    animation: move-twink-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+    from {background-position: 0 0;}
+    to {background-position: -10000px 5000px;}
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
+.title-container {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.title {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5rem;
+    color: #ff69b4;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #4682b4;
+    margin-top: 10px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.stitch-container {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stitch-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.stitch-container:hover .stitch-img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Main Content Styles */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.birthday-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.stitch-couple {
+    width: 100%;
+    max-width: 400px;
+}
+
+.couple-img {
+    width: 100%;
+    height: auto;
+    animation: bounce 2s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    color: white;
+    background: linear-gradient(45deg, #ff69b4, #4682b4);
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover:before {
+    left: 100%;
+}
+
+/* Floating Balloons */
+.floating-balloons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.balloon {
+    position: absolute;
+    width: 40px;
+    height: 50px;
+    border-radius: 50%;
+    animation: float-balloon 15s ease-in-out infinite;
+}
+
+.balloon:before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.balloon.pink {
+    background-color: #ff69b4;
+}
+
+.balloon.blue {
+    background-color: #4682b4;
+}
+
+.floating-balloons .balloon:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-balloons .balloon:nth-child(2) {
+    top: 20%;
+    left: 80%;
+    animation-delay: 2s;
+}
+
+.floating-balloons .balloon:nth-child(3) {
+    top: 60%;
+    left: 15%;
+    animation-delay: 4s;
+}
+
+.floating-balloons .balloon:nth-child(4) {
+    top: 70%;
+    left: 75%;
+    animation-delay: 6s;
+}
+
+.floating-balloons .balloon:nth-child(5) {
+    top: 40%;
+    left: 90%;
+    animation-delay: 8s;
+}
+
+@keyframes float-balloon {
+    0% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-100px) rotate(10deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    color: #555;
+}
+
+.attribution {
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+
+.attribution a {
+    color: #4682b4;
+    text-decoration: none;
+}
+
+.attribution a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+    
+    .stitch-container {
+        margin: 10px 0;
+    }
+    
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .birthday-card {
+        padding: 20px;
+    }
+    
+    .button {
+        font-size: 1.5rem;
+        padding: 12px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .stitch-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .button {
+        font-size: 1.2rem;
+        padding: 10px 25px;
+    }
+}
